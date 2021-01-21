@@ -24,8 +24,12 @@ public class PlayerCtrl : MonoBehaviour
         float h = Input.GetAxis("Horizontal"); //A, D, Left, Right
         Debug.Log($"h={h}, v={v}");
 
-        transform.Translate(Vector3.forward * 0.1f * v);  //Vector3.forward = new Vector3(0, 0, 1)
-        transform.Translate(Vector3.right * 0.1f * h);
+        Vector3 moveDir = (Vector3.forward * v) + (Vector3.right * h);
+        
+        transform.Translate(moveDir * 0.1f);
+
+        // transform.Translate(Vector3.forward * 0.1f * v);  //Vector3.forward = new Vector3(0, 0, 1)
+        // transform.Translate(Vector3.right * 0.1f * h);
 
         /* 단위벡터 (Unit Vector), 정규화 벡터(Normalized Vector)
             Vector3.forward = Vector3(0, 0, 1)
