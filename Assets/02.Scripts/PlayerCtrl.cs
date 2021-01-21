@@ -18,13 +18,7 @@ public class PlayerCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-            Input 클래스 
-            - Keyboard, Mouse, Screen, JoyStick, VR Controller
-            - Vertical
-            - Horizontal
-        */
-
+ 
         float v = Input.GetAxis("Vertical");  //W, S , Up, Down // -1.0f ~ 0.0f ~ +1.0f
         float h = Input.GetAxis("Horizontal"); //A, D, Left, Right
         Debug.Log($"h={h}, v={v}");
@@ -33,16 +27,25 @@ public class PlayerCtrl : MonoBehaviour
         
         transform.Translate(moveDir.normalized * Time.deltaTime *  moveSpeed);
 
-        // transform.Translate(Vector3.forward * 0.1f * v);  //Vector3.forward = new Vector3(0, 0, 1)
-        // transform.Translate(Vector3.right * 0.1f * h);
-
-        /* 단위벡터 (Unit Vector), 정규화 벡터(Normalized Vector)
-            Vector3.forward = Vector3(0, 0, 1)
-            Vector3.up      = Vector3(0, 1, 0)
-            Vector3.right   = Vector3(1, 0, 0)
-
-            Vector3.one     = Vector3(1, 1, 1)
-            Vector3.zero    = Vector3(0, 0, 0)
-        */
+        if (v >= 0.1f)
+        {
+            anim.CrossFade("RunF", 0.3f);
+        }
+        else if (v <= -0.1f)
+        {
+            anim.CrossFade("RunB", 0.3f);
+        }
+        else if (h >= 0.1f)
+        {
+            anim.CrossFade("RunR", 0.3f);
+        }
+        else if (h <= -0.1f)
+        {
+            anim.CrossFade("RunL", 0.3f);
+        }
+        else
+        {
+            anim.CrossFade("Idle", 0.1f);
+        }
     }
 }
