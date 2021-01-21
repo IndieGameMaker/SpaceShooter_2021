@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour
 {
-    public float moveSpeed = 6.0f;
+    public float moveSpeed = 20.0f;
+    public Animation anim;
 
     // Start is called before the first frame update
     void Start()
